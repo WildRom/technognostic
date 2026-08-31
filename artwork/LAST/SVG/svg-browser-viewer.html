@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SVG Peržiūra</title>
+  <style>
+    :root{--gap:20px}
+    html,body{height:100%;margin:0}
+    body{font-family:Arial,Helvetica,sans-serif;background:#f6f6f6}
+    .hero{display:flex;height:100vh}
+    .half{flex:1;display:flex;align-items:center;justify-content:center;padding:var(--gap);box-sizing:border-box}
+    .left{background:#fff}
+    .right{background:#000;color:#fff}
+    .frame{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+    .frame img{max-width:100%;max-height:100%;height:auto;width:auto;display:block}
+    .label{position:absolute;top:12px;left:12px;padding:6px 8px;background:rgba(255,255,255,0.8);font-size:13px;border-radius:4px}
+    .right .label{background:rgba(0,0,0,0.6);color:#fff}
+    @media (max-width:800px){
+      .hero{flex-direction:column}
+      .label{left:50%;transform:translateX(-50%)}
+    }
+  </style>
+</head>
+<body>
+  <h1>SVG Peržiūra</h1>
+  <!-- SVG failai įterpti tiesiogiai -->
+
+  <div class="hero">
+    <div class="half left">
+      <div class="frame" style="position:relative">
+        <div class="label">Standartinis</div>
+        <img src="techno002_black.svg" alt="standartinis SVG">
+      </div>
+    </div>
+
+    <div class="half right">
+      <div class="frame" style="position:relative">
+        <div class="label">Negatyvinis</div>
+        <img src="techno002_white.svg" alt="negatyvinis SVG">
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="half left">
+      <div class="frame" style="position:relative">
+        <div class="label">Spiral Big Black</div>
+        <img src="Spiral.big002_Black_Lines.svg" alt="Spiral Big juodas SVG">
+      </div>
+    </div>
+
+    <div class="half right">
+      <div class="frame" style="position:relative">
+        <div class="label">Spiral Big White</div>
+        <img src="Spiral.big002_White_Lines.svg" alt="Spiral Big baltas SVG">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

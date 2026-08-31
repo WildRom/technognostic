@@ -1,0 +1,11 @@
+# Operating system and editor metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local environment and logs
+.env
+.env.*
+*.log
+node_modules/

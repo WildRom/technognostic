@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Technognostic — original artwork shaped by symbols, machinery and imagined worlds.">
+  <title>Technognostic — Wear the story</title>
+  <link rel="stylesheet" href="assets/css/styles.css?v=15">
+  <style>
+    /* Locked HERO styles copied from hero-scrub-full-width.html. */
+    :root { color-scheme: dark; --accent:#f4a340; --ink:#f5efe7; --muted:#aaa6a3; --progress:0; }
+    * { box-sizing:border-box; }
+    html,body { margin:0; min-width:320px; min-height:100%; background:#07090c; color:var(--ink); }
+    body { font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
+    .hero {
+      position:relative; isolation:isolate; min-height:100svh; overflow:hidden;
+      display:grid; grid-template-columns:minmax(300px,.82fr) minmax(440px,1.18fr);
+      align-items:center; padding:clamp(28px,5vw,86px);
+      background:radial-gradient(circle at 76% 43%,rgba(123,55,130,.35),transparent 29%),
+        radial-gradient(circle at 16% 18%,rgba(236,130,56,.12),transparent 28%),
+        linear-gradient(128deg,#0b1015 0%,#120d16 55%,#080a0d 100%);
+    }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-2; opacity:.18;
+      background-image:radial-gradient(rgba(255,255,255,.38) .65px,transparent .65px);
+      background-size:5px 5px; mask-image:linear-gradient(90deg,#000,transparent 78%); }
+    .copy { z-index:3; max-width:620px; }
+    .eyebrow { margin:0 0 20px; color:var(--accent); font-size:.72rem; font-weight:800;
+      letter-spacing:.22em; text-transform:uppercase; }
+    h1 { max-width:8ch; margin:0; font:700 clamp(4rem,8.4vw,9rem)/.82 Georgia,serif; letter-spacing:-.07em; }
+    .lede { max-width:39ch; margin:30px 0 26px; color:var(--muted); font-size:clamp(1rem,1.35vw,1.14rem); line-height:1.65; }
+    .hint { display:inline-flex; align-items:center; gap:12px; color:#f6c37c; font-size:.82rem;
+      letter-spacing:.06em; text-transform:uppercase; }
+    .hint::before { content:"\2194"; display:grid; width:38px; height:38px; place-items:center;
+      border:1px solid rgba(246,195,124,.46); border-radius:50%; font-size:1.2rem; }
+    .stage { position:relative; align-self:stretch; min-height:620px; display:grid; place-items:center; pointer-events:none; }
+    .stage::before { content:""; position:absolute; width:min(76%,590px); aspect-ratio:1; z-index:-1;
+      border-radius:50%; background:rgba(198,92,45,.23); filter:blur(110px); }
+    .baron-sprite { position:absolute; inset:1% 0 auto; margin:auto; width:min(100%,800px); aspect-ratio:1;
+      filter:drop-shadow(0 30px 25px rgba(0,0,0,.5)); }
+    .baron-atlas { position:absolute; inset:0; opacity:0; background-position:0 0; background-size:600% 400%;
+      background-repeat:no-repeat; will-change:opacity,background-position; transform:translateZ(0); }
+    .baron-atlas.is-active { opacity:1; }
+    .baron-atlas:nth-child(1) { background-image:url("assets/baron-hq-atlas-1.webp?v=3"); }
+    .baron-atlas:nth-child(2) { background-image:url("assets/baron-hq-atlas-2.webp?v=3"); }
+    .baron-atlas:nth-child(3) { background-image:url("assets/baron-hq-atlas-3.webp?v=3"); }
+    .baron-atlas:nth-child(4) { background-image:url("assets/baron-hq-atlas-4.webp?v=3"); }
+    .target { position:absolute; right:2%; z-index:4; display:flex; align-items:center; gap:10px;
+      color:#f7c986; font-size:.67rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    .target::before { content:""; width:42px; height:1px; background:currentColor; }
+    .target-top { top:38%; opacity:clamp(0,calc(1.5 - var(--progress) * 3),1); }
+    .target-bottom { top:76%; opacity:clamp(0,calc(var(--progress) * 3 - 1.5),1); }
+    .meter { position:absolute; right:clamp(24px,4vw,70px); bottom:25px; z-index:5;
+      width:min(22vw,240px); height:2px; background:rgba(255,255,255,.16); }
+    .meter span { display:block; width:calc(var(--progress) * 100%); height:100%; background:var(--accent); }
+    .loading { position:absolute; inset:auto 0 32px; z-index:6; text-align:center; color:#f6c37c;
+      font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; transition:opacity .25s; }
+    .ready .loading { opacity:0; }
+    @media(max-width:800px){ .hero{grid-template-columns:1fr;align-content:start;padding:32px 22px 18px}
+      h1{max-width:10ch;font-size:clamp(3.5rem,17vw,5.8rem)} .lede{margin:20px 0}
+      .stage{min-height:55svh;margin-top:-25px} .baron-sprite{width:min(110%,650px)} .target{right:0}
+      .meter{right:22px;width:120px} }
+  </style>
+</head>
+<body>
+  <a class="site-skip-link" href="#brand-introduction">Skip to content</a>
+
+  <main>
+    <section class="hero" id="hero">
+      <section class="copy">
+        <p class="eyebrow">Halloween collection / 01</p>
+        <h1>Wear the story.</h1>
+        <p class="lede">Move horizontally. Baron follows your position and changes what he points to as you cross the midpoint.</p>
+        <div class="hint">Move left and right</div>
+      </section>
+      <div class="stage" aria-label="Baron Samedi following the pointer">
+        <div class="baron-sprite" id="baron" role="img" aria-label="Baron Samedi wearing the featured T-shirt">
+          <span class="baron-atlas is-active" aria-hidden="true"></span>
+          <span class="baron-atlas" aria-hidden="true"></span>
+          <span class="baron-atlas" aria-hidden="true"></span>
+          <span class="baron-atlas" aria-hidden="true"></span>
+        </div>
+        <div class="target target-top" aria-hidden="true">Upper message</div>
+        <div class="target target-bottom" aria-hidden="true">Lower message</div>
+        <div class="loading">Loading interaction&hellip;</div>
+      </div>
+      <div class="meter" aria-hidden="true"><span></span></div>
+    </section>
+
+    <header class="site-header" data-site-header>
+      <a class="site-wordmark" href="#hero" aria-label="Technognostic — back to the beginning">Technognostic</a>
+      <button class="site-menu-button" type="button" aria-expanded="false" aria-controls="site-navigation">
+        <span>Menu</span><span aria-hidden="true"></span>
+      </button>
+      <nav class="site-navigation" id="site-navigation" aria-label="Primary navigation">
+        <a href="#robot-showcase">Rotation</a>
+        <a href="#campaigns">Signals</a>
+        <a href="#artwork-gallery">Artwork</a>
+        <a href="#artist-process">Process</a>
+        <a href="#marketplaces">Stores</a>
+      </nav>
+    </header>
+
+    <section class="site-introduction" id="brand-introduction" aria-labelledby="introduction-title">
+      <div class="site-container site-introduction__grid">
+        <p class="site-kicker">Original artwork / Mechanical imagination</p>
+        <div>
+          <h2 id="introduction-title">Symbols for imagined machinery.</h2>
+          <!-- PLACEHOLDER COPY: replace when final Technognostic brand copy is supplied. -->
+          <p>Technognostic brings a hand-drawn visual language into contact with symbolic imagery, technology and cosmic imagination. Each work begins as an image with its own internal logic, then finds a second life on cloth.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-section site-section--robot" id="robot-showcase" aria-labelledby="robot-title">
+      <div class="robot-sticky">
+        <div class="site-container robot-layout">
+          <div class="robot-copy">
+            <p class="site-kicker">Object in rotation</p>
+            <h2 id="robot-title">Every side carries a signal.</h2>
+            <!-- PLACEHOLDER COPY: replace when final product copy is supplied. -->
+            <p>A mechanical study of a garment in motion. Follow the full rotation from the front mark to the large artwork across the back.</p>
+            <p class="robot-instruction" data-robot-instruction><span aria-hidden="true">↓</span> Scroll to rotate</p>
+            <div class="robot-progress" aria-hidden="true"><span data-robot-progress></span></div>
+          </div>
+          <div class="robot-media">
+            <video data-robot-video muted playsinline preload="metadata" aria-label="Mechanical robot rotating to display the front and back of a Technognostic T-shirt">
+              <source src="video/technognostic-robot-360-watermark-free-scrub.mp4?v=1" type="video/mp4">
+            </video>
+            <p class="robot-static-note">Representative still shown because reduced motion is enabled.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-section site-section--campaigns" id="campaigns" aria-labelledby="campaigns-title">
+      <div class="site-container site-section__heading">
+        <p class="site-kicker">Featured signals</p>
+        <h2 id="campaigns-title">Three distinct worlds. One visual language.</h2>
+      </div>
+      <article class="campaign campaign--birthwatcher">
+        <div class="campaign__image-wrap">
+          <img src="mockups/campaign/birthwatcher-steampunk-automaton.png" width="1003" height="1568" loading="lazy" alt="Brass steampunk automaton wearing a black Birthwatcher T-shirt in an observatory setting">
+        </div>
+        <div class="campaign__copy">
+          <p class="site-kicker">Signal 001</p>
+          <h3>Birthwatcher</h3>
+          <!-- PLACEHOLDER COPY: replace when final campaign copy is supplied. -->
+          <p>An observatory signal rendered in hand-drawn colour—watched over by brass, dark steel and distant instruments.</p>
+          <a class="site-button" href="https://example.com/technognostic-amazon" target="_blank" rel="noopener noreferrer">View on Amazon <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+      <article class="campaign campaign--observer">
+        <div class="campaign__copy">
+          <p class="site-kicker">Signal 002</p>
+          <h3>Spiral Observer</h3>
+          <!-- PLACEHOLDER COPY: replace when final campaign copy is supplied. -->
+          <p>A mechanical witness follows an encoded spiral through orbital lines, quiet distance and deep indigo space.</p>
+          <a class="site-button" href="https://example.com/technognostic-etsy" target="_blank" rel="noopener noreferrer">View on Etsy <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="campaign__image-wrap">
+          <img src="mockups/campaign/spiral-observer-alien.png" width="1122" height="1402" loading="lazy" alt="Mechanical alien wearing a black Spiral Observer T-shirt against a restrained blue cosmic background">
+        </div>
+      </article>
+      <article class="campaign campaign--circuit">
+        <div class="campaign__image-wrap">
+          <img src="mockups/campaign/sacred-circuit-android.png" width="1122" height="1402" loading="lazy" alt="Ivory and black android wearing a Sacred Circuit T-shirt within fine symmetrical halo geometry">
+        </div>
+        <div class="campaign__copy">
+          <p class="site-kicker">Signal 003</p>
+          <h3>Sacred Circuit</h3>
+          <!-- PLACEHOLDER COPY: replace when final campaign copy is supplied. -->
+          <p>Fine circuitry becomes a symbolic architecture: balanced, precise and held within deliberate silence.</p>
+          <a class="site-button" href="https://example.com/technognostic-amazon" target="_blank" rel="noopener noreferrer">View on Amazon <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+    </section>
+
+    <section class="site-section site-section--gallery" id="artwork-gallery" aria-labelledby="gallery-title">
+      <div class="site-container site-section__heading">
+        <p class="site-kicker">Original work</p>
+        <h2 id="gallery-title">Drawn before it is worn.</h2>
+      </div>
+      <div class="site-container artwork-grid">
+        <figure class="artwork artwork--wide">
+          <img src="artwork/PNG.ART/DanceontheBeach002.png" width="1254" height="1254" loading="lazy" alt="Colourful hand-drawn Dance on the Beach artwork on a black background">
+          <figcaption>Dance on the Beach</figcaption>
+        </figure>
+        <figure class="artwork artwork--portrait">
+          <img src="artwork/PNG.ART/TheEmperor.png" width="1023" height="1537" loading="lazy" alt="Gold linear artwork titled The Emperor on a black background">
+          <figcaption>The Emperor</figcaption>
+        </figure>
+        <figure class="artwork">
+          <img src="artwork/PNG.ART/Fr,Harmony002.png" width="1023" height="1537" loading="lazy" alt="White Frequency Harmony circuit-like line artwork on a black background">
+          <figcaption>Frequency Harmony</figcaption>
+        </figure>
+        <figure class="artwork artwork--mockup">
+          <img src="mockups/T-shirt1.jpeg" width="1600" height="1059" loading="lazy" alt="Black T-shirt mockup showing The Emperor artwork on the front and back">
+          <figcaption>The Emperor / garment study</figcaption>
+        </figure>
+        <figure class="artwork artwork--portrait">
+          <img src="artwork/PNG.ART/Sacredcircuit002.png" width="1023" height="1537" loading="lazy" alt="White Sacred Circuit line artwork on a black background">
+          <figcaption>Sacred Circuit</figcaption>
+        </figure>
+        <figure class="artwork artwork--wide">
+          <img src="artwork/PNG.ART/abc.bbc002.png" width="1254" height="1254" loading="lazy" alt="Colourful abstract hand-drawn figure with ABC and BBC marks on a dark background">
+          <figcaption>Title unknown / ABC–BBC study</figcaption>
+        </figure>
+        <figure class="artwork">
+          <img src="artwork/PNG.ART/Sp.observer002.png" width="1254" height="1254" loading="lazy" alt="White Spiral Observer line artwork on a black background">
+          <figcaption>Spiral Observer</figcaption>
+        </figure>
+        <figure class="artwork artwork--portrait">
+          <img src="artwork/PNG.ART/TheEmpress.png" width="1023" height="1537" loading="lazy" alt="Gold linear artwork titled The Empress on a black background">
+          <figcaption>The Empress</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="site-section site-section--process" id="artist-process" aria-labelledby="process-title">
+      <div class="site-container process-layout">
+        <div class="site-section__heading">
+          <p class="site-kicker">Artist &amp; process</p>
+          <h2 id="process-title">From line to garment.</h2>
+          <!-- PLACEHOLDER COPY: biography and process details have not yet been supplied. -->
+          <p>The available archive reveals a process of drawing, inversion, refinement and translation. Original marks are tested against light and dark grounds before becoming a wearable composition.</p>
+        </div>
+        <div class="process-images">
+          <figure>
+            <img src="artwork/PNG.ART/abc,bbc.png" width="1254" height="1254" loading="lazy" alt="Close view of an original colourful hand-drawn abstract artwork">
+            <figcaption>Original drawing</figcaption>
+          </figure>
+          <figure>
+            <img src="artwork/PNG.ART/Sp.observer.png" width="1254" height="1254" loading="lazy" alt="Black-line Spiral Observer artwork on a light background">
+            <figcaption>Light-ground study</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="site-section site-section--marketplaces" id="marketplaces" aria-labelledby="marketplaces-title">
+      <div class="site-container marketplace-layout">
+        <div class="site-section__heading">
+        <p class="site-kicker">External stores</p>
+        <h2 id="marketplaces-title">Find the collection.</h2>
+          <!-- PLACEHOLDER COPY: replace when final marketplace URLs are supplied. -->
+          <p>Purchases are completed through external marketplace websites. Product links below are temporary placeholders.</p>
+        </div>
+        <div class="marketplace-actions">
+          <a class="site-button site-button--large" href="https://example.com/technognostic-amazon" target="_blank" rel="noopener noreferrer">View on Amazon <span aria-hidden="true">↗</span></a>
+          <a class="site-button site-button--large" href="https://example.com/technognostic-etsy" target="_blank" rel="noopener noreferrer">View on Etsy <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-container"><span>Technognostic</span><span>Original artwork / T-shirt project</span></div>
+  </footer>
+
+  <script src="assets/js/main.js?v=3" defer></script>
+  <script src="assets/js/robot-scrub.js?v=3" defer></script>
+  <script>
+    /* Locked HERO script copied from hero-scrub-full-width.html. */
+    const hero=document.querySelector('#hero');
+    const baron=document.querySelector('#baron');
+    const baronAtlases=[...baron.querySelectorAll('.baron-atlas')];
+    const motion={current:.04,target:.04,raf:0,frame:-1};
+    let interactionReady=false;
+    const clamp=v=>Math.max(0,Math.min(1,v));
+
+    function render(){
+      motion.current+=(motion.target-motion.current)*.12;
+      hero.style.setProperty('--progress',motion.current.toFixed(4));
+      const frame=Math.min(95,Math.max(0,Math.round(motion.current*95)));
+      if(frame!==motion.frame){
+        const atlasIndex=Math.floor(frame/24);
+        const localFrame=frame%24;
+        const column=localFrame%6;
+        const row=Math.floor(localFrame/6);
+        const activeAtlas=baronAtlases[atlasIndex];
+        activeAtlas.style.backgroundPosition=`${column*100/5}% ${row*100/3}%`;
+        baronAtlases.forEach((atlas,index)=>atlas.classList.toggle('is-active',index===atlasIndex));
+        motion.frame=frame;
+      }
+      if(Math.abs(motion.target-motion.current)>.0005) motion.raf=requestAnimationFrame(render);
+      else motion.raf=0;
+    }
+    function aim(clientX){
+      const r=hero.getBoundingClientRect();
+      motion.target=clamp((clientX-r.left)/r.width);
+      if(!interactionReady) return;
+      if(!motion.raf) motion.raf=requestAnimationFrame(render);
+    }
+    const atlasSources=[1,2,3,4].map(index=>`assets/baron-hq-atlas-${index}.webp?v=3`);
+    Promise.all(atlasSources.map(source=>new Promise((resolve,reject)=>{
+      const atlas=new Image();
+      atlas.onload=()=>typeof atlas.decode==='function' ? atlas.decode().then(resolve).catch(resolve) : resolve();
+      atlas.onerror=reject;
+      atlas.src=source;
+    }))).then(()=>{
+      interactionReady=true;
+      hero.classList.add('ready');
+      motion.frame=-1;
+      if(!motion.raf) motion.raf=requestAnimationFrame(render);
+    }).catch(()=>{
+      interactionReady=true;
+      hero.classList.add('ready');
+    });
+    hero.addEventListener('pointermove',e=>aim(e.clientX));
+    hero.addEventListener('pointerdown',e=>aim(e.clientX));
+    hero.addEventListener('touchmove',e=>{if(e.touches[0]) aim(e.touches[0].clientX)},{passive:true});
+    render();
+  </script>
+</body>
+</html>
