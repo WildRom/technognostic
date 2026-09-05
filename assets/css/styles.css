@@ -423,7 +423,7 @@ body { overflow-x: hidden; }
   height: clamp(620px, 68vw, 760px);
   min-height: 620px;
   margin: clamp(80px, 10vw, 140px) auto 0;
-  overflow: hidden;
+  overflow: visible;
   background: transparent !important;
   display: block;
 }
@@ -442,15 +442,15 @@ body { overflow-x: hidden; }
 .campaign--birthwatcher .campaign__image-wrap::before {
   content: "";
   position: absolute;
-  inset: -20vw;
+  inset: -250px;
   z-index: 0;
   background-image: url("../../mockups/campaign/birthwatcher-steampunk-automaton-new.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  filter: blur(70px) brightness(.48) saturate(1.1);
-  transform: scale(1.18);
-  opacity: .65;
+  filter: blur(90px) brightness(.48) saturate(1.15);
+  transform: scale(1.20);
+  opacity: .72;
   -webkit-mask-image: none;
   mask-image: none;
 }
@@ -465,29 +465,25 @@ body { overflow-x: hidden; }
   object-fit: contain;
   object-position: center;
   z-index: 1;
-  filter: drop-shadow(0 28px 50px rgba(0,0,0,.18));
-  -webkit-mask-image: radial-gradient(
-      ellipse 78% 86% at 50% 50%,
-      #000 0%,
-      #000 42%,
-      rgba(0,0,0,.92) 53%,
-      rgba(0,0,0,.68) 65%,
-      rgba(0,0,0,.38) 77%,
-      rgba(0,0,0,.14) 89%,
-      transparent 100%
-    );
-  mask-image: radial-gradient(
-      ellipse 78% 86% at 50% 50%,
-      #000 0%,
-      #000 42%,
-      rgba(0,0,0,.92) 53%,
-      rgba(0,0,0,.68) 65%,
-      rgba(0,0,0,.38) 77%,
-      rgba(0,0,0,.14) 89%,
-      transparent 100%
-    );
+  filter: none;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,.12) 6%, rgba(0,0,0,.45) 14%, rgba(0,0,0,.82) 23%, #000 32%, #000 68%, rgba(0,0,0,.82) 77%, rgba(0,0,0,.45) 86%, rgba(0,0,0,.12) 94%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.15) 7%, rgba(0,0,0,.55) 15%, rgba(0,0,0,.88) 23%, #000 30%, #000 70%, rgba(0,0,0,.88) 77%, rgba(0,0,0,.55) 85%, rgba(0,0,0,.15) 93%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,.12) 6%, rgba(0,0,0,.45) 14%, rgba(0,0,0,.82) 23%, #000 32%, #000 68%, rgba(0,0,0,.82) 77%, rgba(0,0,0,.45) 86%, rgba(0,0,0,.12) 94%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.15) 7%, rgba(0,0,0,.55) 15%, rgba(0,0,0,.88) 23%, #000 30%, #000 70%, rgba(0,0,0,.88) 77%, rgba(0,0,0,.55) 85%, rgba(0,0,0,.15) 93%, transparent 100%);
+  mask-composite: intersect;
+  /* Match the contained 1537:1023 scene without changing image geometry. */
+  -webkit-mask-size: 100% min(100%, calc(60vw * 1023 / 1537), calc(960px * 1023 / 1537));
+  mask-size: 100% min(100%, calc(60vw * 1023 / 1537), calc(960px * 1023 / 1537));
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
+.campaign--birthwatcher::before,
 .campaign--birthwatcher::after {
   content: none;
 }
