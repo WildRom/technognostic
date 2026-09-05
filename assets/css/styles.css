@@ -557,10 +557,10 @@ body { overflow-x: hidden; }
 .campaign--circuit {
   --campaign-background: url("../../mockups/campaign/sacred-circuit-android.png");
   --campaign-background-position: 27% 48%;
-  --campaign-background-opacity: .58;
+  --campaign-background-opacity: .30;
   --campaign-image-position: 46% center;
-  --campaign-ambience-opacity: .42;
-  --campaign-ambience-filter: blur(68px) brightness(.5) saturate(.9);
+  --campaign-ambience-opacity: .40;
+  --campaign-ambience-filter: blur(72px) brightness(.50) saturate(.90);
   --campaign-ambience-tint:
     radial-gradient(circle at 50% 38%, rgba(170,128,62,.4), transparent 46%),
     linear-gradient(180deg, rgba(22,18,12,.18), rgba(0,0,0,.62));
@@ -588,11 +588,24 @@ body { overflow-x: hidden; }
   max-height: none;
 }
 
+.campaign--circuit .campaign__image-wrap::before {
+  inset: -18%;
+  transform: scale(1.18);
+}
+
 .campaign--circuit .campaign__image-wrap img {
   width: 100%;
   height: auto;
   max-height: min(88svh, 940px);
   object-fit: contain;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,.20) 5%, rgba(0,0,0,.62) 11%, #000 19%, #000 80%, rgba(0,0,0,.72) 88%, rgba(0,0,0,.28) 95%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.22) 5%, rgba(0,0,0,.68) 11%, #000 18%, #000 80%, rgba(0,0,0,.68) 89%, rgba(0,0,0,.22) 96%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,.20) 5%, rgba(0,0,0,.62) 11%, #000 19%, #000 80%, rgba(0,0,0,.72) 88%, rgba(0,0,0,.28) 95%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.22) 5%, rgba(0,0,0,.68) 11%, #000 18%, #000 80%, rgba(0,0,0,.68) 89%, rgba(0,0,0,.22) 96%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .campaign--circuit .campaign__copy {
