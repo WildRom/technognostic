@@ -416,15 +416,19 @@ body { overflow-x: hidden; }
 .campaign__copy > p:not(.site-kicker) { max-width: 38ch; margin: 28px 0; color: var(--site-muted); line-height: 1.7; }
 
 .campaign--birthwatcher {
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
   min-height: clamp(720px, 88vh, 980px);
   grid-template-columns: 1fr;
   background-image:
     linear-gradient(
       90deg,
-      rgba(8,10,13,.03) 0%,
-      rgba(8,10,13,.05) 45%,
-      rgba(8,10,13,.32) 62%,
-      rgba(8,10,13,.75) 80%,
+      rgba(8,10,13,.02) 0%,
+      rgba(8,10,13,.02) 48%,
+      rgba(8,10,13,.28) 62%,
+      rgba(8,10,13,.72) 80%,
       #080a0d 100%
     ),
     url("../../mockups/campaign/birthwatcher-steampunk-automaton-new.png");
@@ -433,15 +437,37 @@ body { overflow-x: hidden; }
   background-repeat: no-repeat;
 }
 
-.campaign--birthwatcher::before,
-.campaign--birthwatcher::after {
+.campaign--birthwatcher::before {
   content: none;
 }
 
+.campaign--birthwatcher::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    #101317 0%,
+    transparent 12%,
+    transparent 86%,
+    #09131f 100%
+  );
+  -webkit-mask-image: none;
+  mask-image: none;
+  pointer-events: none;
+}
+
 .campaign--birthwatcher .campaign__copy {
-  width: min(42%, 560px);
-  margin-left: auto;
+  width: min(40vw, 680px);
+  margin-left: 58vw;
+  padding-inline: 0;
   align-self: center;
+}
+
+.campaign--birthwatcher .campaign__copy h3 {
+  max-width: 100%;
+  font-size: clamp(4rem, 6vw, 7rem);
 }
 
 .campaign--observer {
@@ -687,6 +713,9 @@ body { overflow-x: hidden; }
     margin-left: 0;
     align-self: end;
     padding: clamp(260px, 45svh, 420px) 8px 50px;
+  }
+  .campaign--birthwatcher .campaign__copy h3 {
+    font-size: clamp(3rem, 13vw, 4rem);
   }
   .campaign--observer .campaign__copy { order: 2; }
   .campaign__image-wrap { height: min(70svh, 680px); }
