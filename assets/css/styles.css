@@ -424,7 +424,7 @@ body { overflow-x: hidden; }
   min-height: 620px;
   margin: clamp(80px, 10vw, 140px) auto 0;
   overflow: hidden;
-  background: transparent;
+  background: transparent !important;
   display: block;
 }
 
@@ -442,97 +442,54 @@ body { overflow-x: hidden; }
 .campaign--birthwatcher .campaign__image-wrap::before {
   content: "";
   position: absolute;
-  inset: -12%;
+  inset: -20vw;
   z-index: 0;
   background-image: url("../../mockups/campaign/birthwatcher-steampunk-automaton-new.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 35% center;
-  filter: blur(55px) brightness(.52) saturate(1.12);
-  transform: scale(1.12);
-  opacity: .72;
-  -webkit-mask-image: radial-gradient(
-      ellipse 78% 86% at 44% 50%,
-      #000 0%,
-      #000 43%,
-      rgba(0,0,0,.86) 58%,
-      rgba(0,0,0,.52) 72%,
-      rgba(0,0,0,.20) 86%,
-      transparent 100%
-    );
-  mask-image: radial-gradient(
-      ellipse 78% 86% at 44% 50%,
-      #000 0%,
-      #000 43%,
-      rgba(0,0,0,.86) 58%,
-      rgba(0,0,0,.52) 72%,
-      rgba(0,0,0,.20) 86%,
-      transparent 100%
-    );
+  background-position: center;
+  filter: blur(70px) brightness(.48) saturate(1.1);
+  transform: scale(1.18);
+  opacity: .65;
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 .campaign--birthwatcher .campaign__image-wrap img {
   position: absolute;
-  left: 5%;
+  left: 4%;
   top: 50%;
-  width: 56%;
-  height: 92%;
+  width: 60%;
+  height: 96%;
   transform: translateY(-50%);
   object-fit: contain;
   object-position: center;
   z-index: 1;
   filter: drop-shadow(0 28px 50px rgba(0,0,0,.18));
   -webkit-mask-image: radial-gradient(
-      ellipse 70% 82% at 49% 49%,
+      ellipse 78% 86% at 50% 50%,
       #000 0%,
-      #000 52%,
-      rgba(0,0,0,.96) 61%,
-      rgba(0,0,0,.74) 71%,
-      rgba(0,0,0,.42) 82%,
-      rgba(0,0,0,.16) 91%,
+      #000 42%,
+      rgba(0,0,0,.92) 53%,
+      rgba(0,0,0,.68) 65%,
+      rgba(0,0,0,.38) 77%,
+      rgba(0,0,0,.14) 89%,
       transparent 100%
     );
   mask-image: radial-gradient(
-      ellipse 70% 82% at 49% 49%,
+      ellipse 78% 86% at 50% 50%,
       #000 0%,
-      #000 52%,
-      rgba(0,0,0,.96) 61%,
-      rgba(0,0,0,.74) 71%,
-      rgba(0,0,0,.42) 82%,
-      rgba(0,0,0,.16) 91%,
+      #000 42%,
+      rgba(0,0,0,.92) 53%,
+      rgba(0,0,0,.68) 65%,
+      rgba(0,0,0,.38) 77%,
+      rgba(0,0,0,.14) 89%,
       transparent 100%
     );
 }
 
 .campaign--birthwatcher::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-      90deg,
-      transparent 0%,
-      transparent 43%,
-      rgba(8,12,17,.10) 50%,
-      rgba(8,12,17,.38) 63%,
-      rgba(8,12,17,.68) 78%,
-      rgba(8,12,17,.82) 100%
-    );
-  -webkit-mask-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      #000 10%,
-      #000 90%,
-      transparent 100%
-    );
-  mask-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      #000 10%,
-      #000 90%,
-      transparent 100%
-    );
+  content: none;
 }
 
 .campaign--birthwatcher .campaign__copy {
