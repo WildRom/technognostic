@@ -420,25 +420,52 @@ body { overflow-x: hidden; }
   max-width: none;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  min-height: clamp(720px, 88vh, 980px);
+  min-height: 680px;
+  height: min(74vh, 760px);
   grid-template-columns: 1fr;
-  background-image:
+  background:
+    radial-gradient(
+      ellipse at 28% 50%,
+      rgba(22,58,58,.16),
+      transparent 50%
+    ),
     linear-gradient(
       90deg,
-      rgba(8,10,13,.02) 0%,
-      rgba(8,10,13,.02) 48%,
-      rgba(8,10,13,.28) 62%,
-      rgba(8,10,13,.72) 80%,
-      #080a0d 100%
-    ),
-    url("../../mockups/campaign/birthwatcher-steampunk-automaton-new.png");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+      #101317 0%,
+      #0b1218 55%,
+      #09131f 100%
+    );
 }
 
 .campaign--birthwatcher::before {
-  content: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("../../mockups/campaign/birthwatcher-steampunk-automaton-new.png");
+  background-repeat: no-repeat;
+  background-position: 10% center;
+  background-size: auto 100%;
+  opacity: 1;
+  filter: none;
+  transform: none;
+  mix-blend-mode: normal;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 55%,
+    rgba(0,0,0,.9) 65%,
+    rgba(0,0,0,.45) 76%,
+    transparent 88%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 55%,
+    rgba(0,0,0,.9) 65%,
+    rgba(0,0,0,.45) 76%,
+    transparent 88%
+  );
 }
 
 .campaign--birthwatcher::after {
@@ -447,10 +474,10 @@ body { overflow-x: hidden; }
   inset: 0;
   z-index: 1;
   background: linear-gradient(
-    to bottom,
-    #101317 0%,
-    transparent 12%,
-    transparent 86%,
+    90deg,
+    transparent 42%,
+    rgba(8,10,13,.18) 55%,
+    rgba(8,10,13,.72) 75%,
     #09131f 100%
   );
   -webkit-mask-image: none;
@@ -459,15 +486,18 @@ body { overflow-x: hidden; }
 }
 
 .campaign--birthwatcher .campaign__copy {
-  width: min(40vw, 680px);
-  margin-left: 58vw;
-  padding-inline: 0;
-  align-self: center;
+  position: absolute;
+  left: 58%;
+  top: 50%;
+  width: min(36vw, 620px);
+  margin-left: 0;
+  padding: 0;
+  transform: translateY(-50%);
 }
 
 .campaign--birthwatcher .campaign__copy h3 {
   max-width: 100%;
-  font-size: clamp(4rem, 6vw, 7rem);
+  font-size: clamp(3.8rem, 5vw, 6.2rem);
 }
 
 .campaign--observer {
@@ -691,28 +721,21 @@ body { overflow-x: hidden; }
   .campaign--birthwatcher,
   .campaign--observer { grid-template-columns: 1fr; }
   .campaign--birthwatcher {
-    min-height: max(720px, 88svh);
+    min-height: 680px;
+    height: 720px;
     padding: 0;
     align-items: end;
-    background-image:
-      linear-gradient(
-        180deg,
-        rgba(8,10,13,.02) 0%,
-        rgba(8,10,13,.08) 42%,
-        rgba(8,10,13,.5) 66%,
-        rgba(8,10,13,.9) 82%,
-        #080a0d 100%
-      ),
-      url("../../mockups/campaign/birthwatcher-steampunk-automaton-new.png");
-    background-position: center, 35% center;
-    background-size: cover;
-    background-repeat: no-repeat;
+  }
+  .campaign--birthwatcher::before {
+    background-position: 35% center;
   }
   .campaign--birthwatcher .campaign__copy {
+    position: absolute;
+    inset: auto 0 0;
     width: 100%;
     margin-left: 0;
-    align-self: end;
     padding: clamp(260px, 45svh, 420px) 8px 50px;
+    transform: none;
   }
   .campaign--birthwatcher .campaign__copy h3 {
     font-size: clamp(3rem, 13vw, 4rem);
