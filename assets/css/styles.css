@@ -541,6 +541,17 @@ body { overflow-x: hidden; }
   background-image: url("../../mockups/campaign/spiral-observer-alien.png");
 }
 
+.campaign--observer .campaign__image-wrap img {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,.25) 5%, rgba(0,0,0,.70) 11%, #000 18%, #000 76%, rgba(0,0,0,.82) 83%, rgba(0,0,0,.42) 91%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.30) 5%, rgba(0,0,0,.75) 11%, #000 18%, #000 82%, rgba(0,0,0,.72) 90%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0,0,0,.25) 5%, rgba(0,0,0,.70) 11%, #000 18%, #000 76%, rgba(0,0,0,.82) 83%, rgba(0,0,0,.42) 91%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.30) 5%, rgba(0,0,0,.75) 11%, #000 18%, #000 82%, rgba(0,0,0,.72) 90%, transparent 100%);
+  mask-composite: intersect;
+}
+
 .campaign--observer .site-kicker { color: #72a9ba; }
 
 .campaign--circuit {
