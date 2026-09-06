@@ -3,6 +3,7 @@
   const video = section?.querySelector('[data-robot-video]');
   const progressBar = section?.querySelector('[data-robot-progress]');
   const instruction = section?.querySelector('[data-robot-instruction]');
+  const viewCards = section?.querySelectorAll('.robot-view-card');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   if (!section || !video || !progressBar || !instruction) return;
@@ -22,6 +23,12 @@
   let lastSeek = 0;
 
   const clamp = value => Math.max(0, Math.min(1, value));
+
+  const updateViewIndicators = () => {
+    const activeIndex = displayedProgress < 0.18 ? 0 : displayedProgress < 0.38 ? 1 : displayedProgress < 0.66 ? 2 : displayedProgress < 0.84 ? 3 : 4;
+    viewCards.forEach((card, index) => card.classList.toggle('is-active', index === activeIndex));
+    progressBar.parentElement.style.setProperty('--rotation-progress', `${displayedProgress * 100}%`);
+  };
 
   const timeForProgress = progress => {
     for (let index = 1; index < usefulTimeline.length; index += 1) {
@@ -46,6 +53,7 @@
   const render = () => {
     displayedProgress += (targetProgress - displayedProgress) * 0.16;
     progressBar.style.transform = `scaleX(${displayedProgress.toFixed(4)})`;
+    updateViewIndicators();
     instruction.classList.toggle('is-faded', displayedProgress > 0.035);
 
     desiredTime = timeForProgress(displayedProgress);
@@ -67,6 +75,8 @@
     if (reducedMotion.matches) {
       targetProgress = 0;
       displayedProgress = 0;
+      progressBar.style.transform = 'scaleX(0)';
+      updateViewIndicators();
       if (ready) video.currentTime = 0.7;
     } else {
       readScroll();
