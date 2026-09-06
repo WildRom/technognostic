@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Technognostic — original artwork shaped by symbols, machinery and imagined worlds.">
   <title>Technognostic — Wear the story</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=19">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20">
   <style>
     /* Locked HERO styles copied from hero-scrub-full-width.html. */
     :root { color-scheme: dark; --accent:#f4a340; --ink:#f5efe7; --muted:#aaa6a3; --progress:0; }
@@ -120,9 +120,17 @@
             <!-- PLACEHOLDER COPY: replace when final product copy is supplied. -->
             <p>A mechanical study of a garment in motion. Follow the full rotation from the front mark to the large artwork across the back.</p>
             <p class="robot-instruction" data-robot-instruction><span aria-hidden="true">↓</span> Scroll to rotate</p>
-            <div class="robot-progress" aria-hidden="true"><span data-robot-progress></span></div>
+            <div class="robot-rotation-scale" aria-hidden="true">
+              <span>0&deg;</span>
+              <div class="robot-progress"><span data-robot-progress></span></div>
+              <span>360&deg;</span>
+            </div>
           </div>
           <div class="robot-media">
+            <div class="robot-stage-floor" aria-hidden="true"></div>
+            <div class="robot-view-index" aria-hidden="true">
+              <span class="is-active">FRONT</span><span>RIGHT</span><span>BACK</span><span>LEFT</span><span>DETAIL</span>
+            </div>
             <video data-robot-video muted playsinline preload="metadata" aria-label="Mechanical robot rotating to display the front and back of a Technognostic T-shirt">
               <source src="video/technognostic-robot-360-watermark-free-scrub.mp4?v=1" type="video/mp4">
             </video>
