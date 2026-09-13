@@ -33,6 +33,21 @@
 })();
 
 (() => {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const videos = document.querySelectorAll('.symbol-terminal video');
+
+  const applyMotionPreference = () => {
+    videos.forEach(video => {
+      if (reducedMotion.matches) video.pause();
+      else video.play().catch(() => {});
+    });
+  };
+
+  reducedMotion.addEventListener('change', applyMotionPreference);
+  applyMotionPreference();
+})();
+
+(() => {
   const robotSection = document.querySelector('#robot-showcase');
   if (!robotSection) return;
 
