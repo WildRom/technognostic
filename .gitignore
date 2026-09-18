@@ -9,3 +9,6 @@ Thumbs.db
 .env.*
 *.log
 node_modules/
+
+# Local Baron render/browser scratch data
+.tmp-baron-*/
