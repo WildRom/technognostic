@@ -764,10 +764,122 @@ video { max-width: 100%; }
 .site-button:hover,
 .site-button:focus-visible { color: #0b0d0f; background: var(--site-ink); }
 
-.site-section--gallery { background: linear-gradient(180deg, #0d1020, #0b0d10 34%, #0b0d0f); }
-.gallery-introduction { max-width: none; margin: 18px 0 0; color: var(--site-muted); font-size: .9rem; letter-spacing: .04em; }
-.collection-showcase { margin-top: clamp(46px, 6vw, 86px); margin-bottom: clamp(12px, 2vw, 30px); }
-.collection-showcase img { display: block; width: 100%; max-width: 1536px; height: auto; margin-inline: auto; }
+.site-section--gallery {
+  min-height: 0;
+  padding-block: clamp(82px, 8vw, 124px);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 20% at 50% 0%, rgba(201, 119, 67, .09), transparent 72%),
+    linear-gradient(180deg, #0d1013, #090c0e 28%, #0b0d0f);
+}
+
+.site-section--gallery .site-section__heading { gap: 0; }
+.site-section--gallery h2 { max-width: none; margin-top: 14px; }
+.site-section--gallery .site-section__heading > .gallery-introduction {
+  max-width: none;
+  margin: 16px 0 0;
+  color: #aaa19a;
+  font: 400 clamp(1.05rem, 1.55vw, 1.35rem)/1.55 Georgia, serif;
+  letter-spacing: .01em;
+}
+
+.shirt-gallery {
+  display: grid;
+  width: min(calc(100% - clamp(32px, 4vw, 72px)), 1800px);
+  margin: clamp(46px, 4.5vw, 70px) auto 0;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: clamp(14px, 1.5vw, 26px);
+  row-gap: clamp(28px, 2.5vw, 42px);
+}
+
+.shirt-gallery__item {
+  display: flex;
+  min-width: 0;
+  margin: 0;
+  flex-direction: column;
+  align-self: start;
+  text-align: center;
+}
+
+.shirt-gallery__image {
+  position: relative;
+  flex: none;
+}
+
+.shirt-gallery__image::before {
+  position: absolute;
+  top: 49%;
+  left: 50%;
+  width: 78%;
+  height: 86%;
+  background: radial-gradient(ellipse, rgba(221, 178, 111, .28), rgba(177, 143, 94, .15) 44%, rgba(132, 117, 94, .06) 64%, transparent 79%);
+  filter: blur(34px);
+  opacity: .92;
+  transform: translate(-50%, -50%);
+  transition: opacity 320ms ease;
+  content: "";
+  pointer-events: none;
+}
+
+.shirt-gallery__item img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 22px rgba(0, 0, 0, .32));
+  transition: transform 320ms ease, filter 320ms ease;
+}
+
+.shirt-gallery__item h3 {
+  margin: 12px 0 0;
+  color: var(--site-ink);
+  font: 700 clamp(.66rem, .72vw, .78rem)/1.45 Inter, ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  transition: color var(--site-fast) ease;
+}
+
+.shirt-gallery__item p {
+  width: 72%;
+  margin: 4px auto 0;
+  padding-bottom: 9px;
+  border-bottom: 1px solid rgba(211, 173, 103, .34);
+  color: #c99b62;
+  font: 700 clamp(.5rem, .55vw, .59rem)/1.55 Inter, ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: .21em;
+  text-transform: uppercase;
+}
+
+@media (hover: hover) {
+  .shirt-gallery__item:hover img {
+    filter: drop-shadow(0 24px 26px rgba(0, 0, 0, .4));
+    transform: translateY(-6px) scale(1.012);
+  }
+  .shirt-gallery__item:hover .shirt-gallery__image::before { opacity: 1; }
+  .shirt-gallery__item:hover h3 { color: #f2c47f; }
+}
+
+@media (max-width: 1199px) {
+  .shirt-gallery {
+    max-width: 1040px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .shirt-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(18px, 5vw, 38px);
+    row-gap: clamp(28px, 6vw, 44px);
+  }
+}
+
+@media (max-width: 480px) {
+  .site-section--gallery { padding-block: clamp(74px, 20vw, 96px); }
+  .shirt-gallery { max-width: 390px; grid-template-columns: minmax(0, 1fr); }
+  .shirt-gallery__item h3 { font-size: .75rem; }
+  .shirt-gallery__item p { font-size: .55rem; }
+}
 
 .site-section--originals {
   background:
@@ -1078,7 +1190,6 @@ video { max-width: 100%; }
   .robot-stage-floor { height: 52px; }
   .robot-rotation-scale { bottom: 0; width: min(80%, 360px); }
 
-  .collection-showcase { margin-top: 34px; }
   .marketplace-layout { gap: 36px; }
   .marketplace-actions { gap: 12px; }
   .site-button--large { flex: 1 1 180px; min-width: 0; }
@@ -1129,7 +1240,10 @@ video { max-width: 100%; }
   html { scroll-behavior: auto; }
   .site-navigation a,
   .site-button,
-  .robot-instruction { transition: none; }
+  .robot-instruction,
+  .shirt-gallery__image::before,
+  .shirt-gallery__item img,
+  .shirt-gallery__item h3 { transition: none; }
 }
 
 @media (max-width: 760px) {
