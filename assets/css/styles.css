@@ -1131,3 +1131,8 @@ video { max-width: 100%; }
   .site-button,
   .robot-instruction { transition: none; }
 }
+
+@media (max-width: 760px) {
+  .baron-feature { touch-action: pan-y; }
+  .baron-artwork { width: min(58%,590px); transform: translate(27%,-30%); }
+}

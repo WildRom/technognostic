@@ -273,12 +273,9 @@
       interactionReady=true;
       hero.classList.add('ready');
     });
-    if(finePointer.matches){
-      hero.addEventListener('pointermove',e=>aim(e.clientX));
-      hero.addEventListener('pointerdown',e=>aim(e.clientX));
-    }else{
-      motion.target=.5;
-    }
+    if(!finePointer.matches) motion.target=.5;
+    hero.addEventListener('pointermove',e=>aim(e.clientX));
+    hero.addEventListener('pointerdown',e=>aim(e.clientX));
     render();
   </script>
 </body>
