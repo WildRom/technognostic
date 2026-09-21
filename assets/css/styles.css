@@ -1135,4 +1135,9 @@ video { max-width: 100%; }
 @media (max-width: 760px) {
   .baron-feature { touch-action: pan-y; }
   .baron-artwork { width: min(58%,590px); transform: translate(27%,-30%); }
+  :is(.campaign--observer,.campaign--birthwatcher,.campaign--circuit) { margin-top: 32px; padding: 0; }
+  :is(.campaign--observer,.campaign--birthwatcher,.campaign--circuit) .campaign__image-wrap,
+  :is(.campaign--observer,.campaign--birthwatcher,.campaign--circuit) .campaign__image-wrap img { height: auto; }
+  :is(.campaign--observer,.campaign--birthwatcher,.campaign--circuit) .campaign__image-wrap img { -webkit-mask-image: none; mask-image: none; }
+  :is(.campaign--observer,.campaign--birthwatcher,.campaign--circuit) .campaign__copy { padding: 12px 0 8px; }
 }
