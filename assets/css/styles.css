@@ -875,10 +875,17 @@ video { max-width: 100%; }
 }
 
 @media (max-width: 480px) {
-  .site-section--gallery { padding-block: clamp(74px, 20vw, 96px); }
-  .shirt-gallery { max-width: 390px; grid-template-columns: minmax(0, 1fr); }
-  .shirt-gallery__item h3 { font-size: .75rem; }
-  .shirt-gallery__item p { font-size: .55rem; }
+  .site-section--gallery { padding-block: clamp(64px, 17vw, 84px); }
+  .shirt-gallery {
+    max-width: 340px;
+    margin-top: 34px;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 40px;
+  }
+  /* Mobile halo: still visible, restrained so white shirts don't blow out. */
+  .shirt-gallery__image::before { width: 72%; height: 74%; filter: blur(28px); opacity: .78; }
+  .shirt-gallery__item h3 { margin-top: 14px; font-size: .75rem; text-wrap: balance; }
+  .shirt-gallery__item p { margin-top: 5px; padding-bottom: 10px; font-size: .55rem; }
 }
 
 .site-section--originals {
