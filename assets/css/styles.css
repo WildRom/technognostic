@@ -998,6 +998,39 @@ video { max-width: 100%; }
 
 .site-footer .site-container { display: flex; justify-content: space-between; gap: 24px; }
 
+/* footer signature — centered warm-gold credit line */
+.site-footer__signature {
+  margin-top: 26px;
+  padding-top: 22px;
+  padding-inline: var(--site-gutter);
+  border-top: 1px solid rgba(211, 173, 103, .16);
+  text-align: center;
+  text-transform: none;
+  letter-spacing: .08em;
+  color: #c99b62;
+  font-weight: 500;
+}
+
+.site-footer__signature p {
+  margin: 0;
+  line-height: 1.9;
+}
+
+.site-footer__signature p + p { margin-top: 4px; }
+
+.site-footer__signature a {
+  color: var(--site-gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(211, 173, 103, .35);
+  transition: color var(--site-fast) ease, border-color var(--site-fast) ease;
+}
+
+.site-footer__signature a:hover,
+.site-footer__signature a:focus-visible {
+  color: #f2c47f;
+  border-bottom-color: rgba(242, 196, 127, .6);
+}
+
 .site-header a:focus-visible,
 .site-menu-button:focus-visible {
   outline: 2px solid var(--site-gold);
